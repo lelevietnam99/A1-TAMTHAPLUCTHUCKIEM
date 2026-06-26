@@ -3,373 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tam Thập Lục Thức Kiếm - Khẩu Quyết & Video Minh Họa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
-    
+    <title>Tam Thập Lục Thức Kiếm - Video Library</title>
     <style>
-        :root {
-            --primary-color: #8b1e0f; /* Đỏ đô truyền thống */
-            --accent-color: #f1c40f;  /* Vàng hoa mai */
-            --text-color: #2c3e50;
-            --bg-glass: rgba(255, 255, 255, 0.93);
-        }
-
-        * {
-            box-sizing: border-box;
+        /* Thiết lập nền vũ trụ huyền ảo */
+        body {
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Ảnh nền tinh vân vũ trụ từ Unsplash */
+            background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #03030d; /* Màu nền dự phòng */
+            color: #e0e0ff;
+            min-height: 100vh;
         }
 
-        body {
-            font-family: 'Be Vietnam Pro', sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-            /* Hình nền có thể giữ nguyên hoa mai hoặc đổi sang phong cảnh truyền thống */
-            background: url('https://images.unsplash.com/photo-1610448721566-47369c768e70?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
+        /* Khung chứa chính */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 40px 20px;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* Tiêu đề chính */
+        /* Tiêu đề trang hiệu ứng phát sáng neon */
         header {
             text-align: center;
             margin-bottom: 40px;
-            background: rgba(139, 30, 15, 0.85);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 2px solid var(--accent-color);
-            backdrop-filter: blur(5px);
         }
 
         header h1 {
-            font-family: 'Playfair Display', serif;
-            color: var(--accent-color);
             font-size: 2.5rem;
+            color: #00f2fe;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00f2fe, 0 0 20px #4facfe;
         }
 
         header p {
-            color: #fff;
+            color: #a1a1c8;
             font-size: 1.1rem;
-            font-style: italic;
         }
 
-        /* Khung nội dung chung */
-        .section-card {
-            background: var(--bg-glass);
-            padding: 35px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 8px;
-            display: inline-block;
-        }
-
-        /* Layout phần Lời Thiệu */
-        .thieu-container {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 850px) {
-            .thieu-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Bảng Nguyên văn & Chú giải */
-        .thieu-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .thieu-table th {
-            background-color: var(--primary-color);
-            color: #fff;
-            text-align: left;
-            padding: 12px;
-            font-size: 1.05rem;
-        }
-
-        .thieu-table td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            vertical-align: top;
-            font-size: 0.95rem;
-        }
-
-        .thieu-table tr:nth-child(even) {
-            background-color: rgba(139, 30, 15, 0.04);
-        }
-
-        .nguyen-van {
-            font-weight: 600;
-            color: #111;
-        }
-
-        .chu-giai {
-            color: #555;
-            font-style: italic;
-        }
-
-        /* Khung Dịch Thơ */
-        .poem-box {
-            background: rgba(241, 196, 15, 0.1);
-            border-left: 5px solid var(--accent-color);
-            padding: 25px;
-            border-radius: 0 15px 15px 0;
-            height: fit-content;
-        }
-
-        .poem-content {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            line-height: 2;
-            text-align: center;
-            color: #444;
-            font-style: italic;
-        }
-
-        /* Layout phần Video */
-        .video-hub {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 850px) {
-            .video-hub {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .video-player-wrapper {
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            aspect-ratio: 16/9;
+        /* Thanh tìm kiếm nhanh */
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px auto;
             display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .search-box input:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Bố cục Grid hiển thị danh sách video */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Thẻ bao bọc từng video (Giao diện kính không gian) */
+        .video-card {
+            background: rgba(10, 15, 30, 0.65);
+            border: 1px solid rgba(79, 172, 254, 0.2);
+            border-radius: 16px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #00f2fe;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Tiêu đề từng thức kiếm */
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 12px;
+            border-left: 3px solid #00f2fe;
+            padding-left: 10px;
+        }
+
+        /* Trình phát video */
         video {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .video-info-bar {
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 20px;
             border-radius: 8px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #000;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
-        /* Danh sách nút chọn động tác */
-        .playlist-container {
-            max-height: 450px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        /* Tùy chỉnh thanh cuộn cho bảng danh sách */
-        .playlist-container::-webkit-scrollbar {
-            width: 6px;
-        }
-        .playlist-container::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 10px;
-        }
-
-        .grid-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
-            gap: 10px;
-        }
-
-        .btn-dong-tac {
-            background: white;
-            border: 1px solid #ccc;
-            padding: 12px 5px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
+        /* Tên file hiển thị nhỏ phía dưới */
+        .file-info {
+            margin-top: 10px;
             font-size: 0.85rem;
-            transition: all 0.2s ease;
+            color: #707090;
+            font-family: monospace;
+            text-align: right;
+        }
+
+        /* Footer trang web */
+        footer {
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .btn-dong-tac:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #000;
-            transform: translateY(-2px);
-        }
-
-        .btn-dong-tac.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 8px rgba(139, 30, 15, 0.3);
+            margin-top: 60px;
+            color: #505070;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
+        <header>
+            <h1>Tam Thập Lục Thức Kiếm</h1>
+            <p>Kho lưu trữ và tư liệu luyện tập 36 Thức Kiếm Pháp</p>
+        </header>
 
-    <header>
-        <h1>Tam Thập Lục Thức Kiếm</h1>
-        <p>Bảo Tồn Di Sản Võ Học Cổ Truyền Việt Nam</p>
-    </header>
-
-    <div class="section-card">
-        <h2 class="section-title">Khẩu Quyết Kiếm Pháp</h2>
-        
-        <div class="thieu-container">
-            <div>
-                <table class="thieu-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 50%;">A. Nguyên Lý (Minh Họa)</th>
-                            <th style="width: 50%;">B. Chú giải</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="nguyen-van">1. Khởi thức trầm ổn, tĩnh như sơn</td>
-                            <td class="chu-giai">1. Thức đầu tiên phải giữ cơ thể vững chãi, tâm trí phẳng lặng như núi.</td>
-                        </tr>
-                        <tr>
-                            <td class="nguyen-van">2. Kiếm xuất như long, thoái như phong</td>
-                            <td class="chu-giai">2. Đâm kiếm ra dũng mãnh như rồng, thu kiếm lùi bước nhanh như gió.</td>
-                        </tr>
-                        <tr>
-                            <td class="nguyen-van">3. Tá lực đả lực, tứ lạng bạt thiên cân</td>
-                            <td class="chu-giai">3. Mượn sức địch để đánh địch, dùng sự khéo léo để hóa giải đòn nặng.</td>
-                        </tr>
-                        <tr>
-                            <td class="nguyen-van">4. Liên hoàn tam trảm, phá giáp y</td>
-                            <td class="chu-giai">4. Chém liên tục ba nhát theo thế tam tài để phá vỡ thế thủ của đối phương.</td>
-                        </tr>
-                        <tr>
-                            <td class="nguyen-van">5. Ngự kiếm hồi thân, tàng sát khí</td>
-                            <td class="chu-giai">5. Thu kiếm về sát người, che giấu ý định tấn công tiếp theo.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="poem-box">
-                <h3 style="color: var(--primary-color); margin-bottom: 15px; text-align: center; font-family: 'Playfair Display', serif;">C. Dịch Thơ</h3>
-                <div class="poem-content">
-                    Kiếm khí tung hoành ba sáu thức,<br>
-                    Uy dũng tựa rồng trảm yêu ma.<br>
-                    Thân pháp nhẹ nhàng như gió cuốn,<br>
-                    Trường kiếm vung lên tựa sao sa.<br><br>
-                    Tiến thoái nhịp nhàng theo bát quái,<br>
-                    Hư thực biến ảo khó dò la.<br>
-                    Chí kiên tâm tĩnh rèn kiếm pháp,<br>
-                    Lưu truyền tinh hoa ngàn năm qua.
-                </div>
-            </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Nhập số thức để tìm nhanh (Ví dụ: 5, 12...)" autocomplete="off">
         </div>
+
+        <div class="video-grid" id="videoGrid">
+            </div>
+
+        <footer>
+            <p>&copy; Kiếm Pháp Tự Luyện - Tài liệu lưu trữ cá nhân trên GitHub</p>
+        </footer>
     </div>
 
-    <div class="section-card">
-        <h2 class="section-title">Video Minh Họa Động Tác</h2>
+    <script>
+        // Hàm tự động tạo danh sách 36 Video
+        const videoGrid = document.getElementById('videoGrid');
         
-        <div class="video-info-bar" id="videoTitle">
-            Đang chọn: Thức Thứ 1 (File: DT_1.mp4)
-        </div>
-
-        <div class="video-hub">
-            <div class="video-player-container">
-                <div class="video-player-wrapper">
-                    <video id="mainVideo" controls autoplay muted>
-                        <source id="videoSource" src="DT_1.mp4#t=0.001" type="video/mp4">
-                        Trình duyệt của bạn không hỗ trợ phát video này.
-                    </video>
-                </div>
-            </div>
-
-            <div>
-                <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #444;">Chọn Thức Kiếm (1 - 36):</h3>
-                <div class="playlist-container">
-                    <div class="grid-buttons" id="buttonsGrid">
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<script>
-    const totalVideos = 36;
-    const buttonsGrid = document.getElementById('buttonsGrid');
-    const mainVideo = document.getElementById('mainVideo');
-    const videoSource = document.getElementById('videoSource');
-    const videoTitle = document.getElementById('videoTitle');
-
-    // Tự động tạo 36 nút bấm tương ứng với 36 thức kiếm
-    for (let i = 1; i <= totalVideos; i++) {
-        const btn = document.createElement('button');
-        btn.className = 'btn-dong-tac';
-        if (i === 1) btn.classList.add('active'); // Đặt nút số 1 làm mặc định kích hoạt
-        
-        // Hiển thị chữ trên nút bấm
-        btn.innerText = "Thức " + i;
-        
-        // Xử lý sự kiện khi click vào nút chọn thức kiếm
-        btn.onclick = function() {
-            // Xóa class active của nút cũ và thêm vào nút vừa bấm
-            document.querySelectorAll('.btn-dong-tac').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Xử lý tên file (Từ 1-35 là DT_x, thức 36 là DP_36)
+        for (let i = 1; i <= 36; i++) {
+            // Xác định tên file: Từ 1-35 là DT_, riêng thức 36 là DP_36 theo đúng yêu cầu của bạn
             let fileName = (i === 36) ? `DT_36.mp4` : `DT_${i}.mp4`;
             
-            // Cập nhật thanh thông tin hiển thị
-            videoTitle.innerText = `Đang chọn: Thức Thứ ${i} (File: ${fileName})`;
+            // Tạo phần tử div cho thẻ video
+            const card = document.createElement('div');
+            card.className = 'video-card';
             
-            // Đổi nguồn video (Thêm #t=0.001 để fix lỗi đen màn hình trên GitHub)
-            videoSource.setAttribute('src', fileName + '#t=0.001');
-            mainVideo.load();
-            mainVideo.play().catch(error => {
-                console.log("Trình duyệt chặn tự động phát hoặc chưa có file video trong thư mục.");
+            card.innerHTML = `
+                <div class="video-title">Thức Thứ ${i}</div>
+                <video controls preload="metadata">
+                    <source src="${fileName}" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ phát thẻ video này.
+                </video>
+                <div class="file-info">File: ${fileName}</div>
+            `;
+            
+            videoGrid.appendChild(card);
+        }
+
+        // Hàm tìm kiếm và lọc video nhanh
+        function searchFunction() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.video-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.video-title').textContent.toLowerCase();
+                const fileInfo = card.querySelector('.file-info').textContent.toLowerCase();
+                
+                // Nếu tìm thấy ký tự trùng khớp trong tiêu đề hoặc tên file thì hiển thị
+                if (title.includes(input) || fileInfo.includes(input)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
             });
-        };
-        
-        buttonsGrid.appendChild(btn);
-    }
-</script>
+        }
+    </script>
 
 </body>
 </html>
