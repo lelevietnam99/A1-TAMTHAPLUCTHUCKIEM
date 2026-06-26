@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tam Thập Lục Thức Kiếm - Video Library</title>
+    <style>
+        /* Thiết lập nền vũ trụ huyền ảo */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Ảnh nền tinh vân vũ trụ từ Unsplash */
+            background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #03030d; /* Màu nền dự phòng */
+            color: #e0e0ff;
+            min-height: 100vh;
+        }
+
+        /* Khung chứa chính */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Tiêu đề trang hiệu ứng phát sáng neon */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #00f2fe;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00f2fe, 0 0 20px #4facfe;
+        }
+
+        header p {
+            color: #a1a1c8;
+            font-size: 1.1rem;
+        }
+
+        /* Thanh tìm kiếm nhanh */
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            display: flex;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 30px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .search-box input:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Bố cục Grid hiển thị danh sách video */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Thẻ bao bọc từng video (Giao diện kính không gian) */
+        .video-card {
+            background: rgba(10, 15, 30, 0.65);
+            border: 1px solid rgba(79, 172, 254, 0.2);
+            border-radius: 16px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #00f2fe;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Tiêu đề từng thức kiếm */
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 12px;
+            border-left: 3px solid #00f2fe;
+            padding-left: 10px;
+        }
+
+        /* Trình phát video */
+        video {
+            width: 100%;
+            border-radius: 8px;
+            background-color: #000;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* Tên file hiển thị nhỏ phía dưới */
+        .file-info {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #707090;
+            font-family: monospace;
+            text-align: right;
+        }
+
+        /* Footer trang web */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #505070;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Tam Thập Lục Thức Kiếm</h1>
+            <p>Kho lưu trữ và tư liệu luyện tập 36 Thức Kiếm Pháp</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Nhập số thức để tìm nhanh (Ví dụ: 5, 12...)" autocomplete="off">
+        </div>
+
+        <div class="video-grid" id="videoGrid">
+            </div>
+
+        <footer>
+            <p>&copy; Kiếm Pháp Tự Luyện - Tài liệu lưu trữ cá nhân trên GitHub</p>
+        </footer>
+    </div>
+
+    <script>
+        // Hàm tự động tạo danh sách 36 Video
+        const videoGrid = document.getElementById('videoGrid');
+        
+        for (let i = 1; i <= 36; i++) {
+            // Xác định tên file: Từ 1-35 là DT_, riêng thức 36 là DP_36 theo đúng yêu cầu của bạn
+            let fileName = (i === 36) ? `DT_36.mp4` : `DT_${i}.mp4`;
+            
+            // Tạo phần tử div cho thẻ video
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            
+            card.innerHTML = `
+                <div class="video-title">Thức Thứ ${i}</div>
+                <video controls preload="metadata">
+                    <source src="${fileName}" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ phát thẻ video này.
+                </video>
+                <div class="file-info">File: ${fileName}</div>
+            `;
+            
+            videoGrid.appendChild(card);
+        }
+
+        // Hàm tìm kiếm và lọc video nhanh
+        function searchFunction() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.video-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.video-title').textContent.toLowerCase();
+                const fileInfo = card.querySelector('.file-info').textContent.toLowerCase();
+                
+                // Nếu tìm thấy ký tự trùng khớp trong tiêu đề hoặc tên file thì hiển thị
+                if (title.includes(input) || fileInfo.includes(input)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
